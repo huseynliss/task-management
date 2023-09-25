@@ -29,12 +29,18 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public List<UserEntity> getLast4Users(){
+
+        return userRepository.findFirst4ByOrderByIdDesc();
+    }
+
     public UserEntity createUser(String name, MultipartFile imageData) throws IOException {
         byte[] imageData1 = imageData.getBytes();
         // UserEntity oluşturun ve veritabanına kaydedin
         UserEntity user = new UserEntity();
         user.setName(name);
         user.setImageData(imageData1);
+
         return userRepository.save(user);
     }
 }

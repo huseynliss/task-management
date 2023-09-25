@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 @Data
@@ -25,6 +27,9 @@ public class UserEntity {
 //    @Type(type="org.hibernate.type.BinaryType")
     private byte[] imageData;
 
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<TaskEntity> tasks;
 
 
     // Getter ve setter metotları
